@@ -36,15 +36,7 @@ nmap ,d :b#<bar>bd#<CR>
 
 "toggles the nerd tree to the currently opened file (or closes it)
 function! MyNERDTreeToggle()
-    if nerdtree#treeExistsForTab()
-        if !nerdtree#isTreeOpen()
-            :NERDTreeFind
-        else
-            :NERDTreeClose
-        endif
-    else
-        :NERDTreeFind
-    endif
+    :NERDTreeToggle
 endfunction
 
 map <C-E> :call MyNERDTreeToggle()<cr>
