@@ -10,6 +10,7 @@ execute pathogen#infect()
 
 "use soft tabs for python
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+filetype plugin indent on
 
 " Color
 :set t_Co=256
@@ -19,7 +20,7 @@ autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
 :set guifont=Courier\ 10\ Pitch\ 10
 
 " nicer list mode (to find tabs)
-:set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+:set listchars=tab:>-,trail:#,extends:~,precedes:<
 ":set list (default turned off for now)
 
 :set mousemodel=popup
