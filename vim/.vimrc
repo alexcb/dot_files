@@ -44,4 +44,4 @@ map <C-E> :call MyNERDTreeToggle()<cr>
 
 "nerd tree arrows don't display correctly in gvim, disable them
 let g:NERDTreeDirArrows=0
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.o']
