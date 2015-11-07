@@ -28,8 +28,8 @@ filetype plugin indent on
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
-map <C-H> :bp<cr>
-map <C-L> :bn<cr>
+map <C-H> :MBEbp<cr>
+map <C-L> :MBEbn<cr>
 
 "command to close buffer without closing the viewport
 nmap ,d :b#<bar>bd#<CR>
