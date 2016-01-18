@@ -1,4 +1,5 @@
 set -x
+set -e
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -13,3 +14,6 @@ git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
 rm -rf ~/.vim/bundle/minibufexplr
 git clone https://github.com/fholgado/minibufexpl.vim.git ~/.vim/bundle/minibufexplr
+
+rm -rf ~/.vim/bundle/vim-go
+git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go

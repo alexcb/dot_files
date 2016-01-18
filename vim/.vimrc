@@ -17,7 +17,7 @@ filetype plugin indent on
 :colorscheme inkpot
 
 " GUI options
-:set guifont=Courier\ 10\ Pitch\ 10
+:set guifont=Courier\ 10\ Pitch\ 14
 
 " nicer list mode (to find tabs)
 :set listchars=tab:>-,trail:#,extends:~,precedes:<
@@ -37,10 +37,15 @@ nmap ,d :b#<bar>bd#<CR>
 
 "toggles the nerd tree to the currently opened file (or closes it)
 function! MyNERDTreeToggle()
-    :NERDTreeToggle
+    if !g:NERDTree.IsOpen()
+        :NERDTreeFind
+    else
+        :NERDTreeClose
+    endif
 endfunction
 
 map <C-E> :call MyNERDTreeToggle()<cr>
+map <C-T> :TagbarToggle<cr>
 
 "nerd tree arrows don't display correctly in gvim, disable them
 let g:NERDTreeDirArrows=0
