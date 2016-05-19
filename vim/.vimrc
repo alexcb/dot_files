@@ -17,13 +17,32 @@ filetype plugin indent on
 :colorscheme inkpot
 
 " GUI options
-:set guifont=Courier\ 10\ Pitch\ 14
+:set guifont=Courier\ 10\ Pitch\ 12
+
+" guifont size + 1
+function! ZoomIn()
+  let l:fsize = substitute(&guifont, '.*Pitch ', '\1', '')
+  let l:fsize += 1
+  let &guifont = "Courier\ 10\ Pitch\ " . l:fsize
+endfunction
+
+" guifont size - 1
+function! ZoomOut()
+  let l:fsize = substitute(&guifont, '.*Pitch ', '\1', '')
+  let l:fsize -= 1
+  let &guifont = "Courier\ 10\ Pitch\ " . l:fsize
+endfunction
+
+map <C-PAGEUP> :call ZoomIn()<cr>
+map <C-PAGEDOWN> :call ZoomOut()<cr>
 
 " nicer list mode (to find tabs)
 :set listchars=tab:>-,trail:#,extends:~,precedes:<
 ":set list (default turned off for now)
 
 :set mousemodel=popup
+
+map <F12> :syntax sync fromstart<CR>
 
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
