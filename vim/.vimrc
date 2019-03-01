@@ -10,6 +10,8 @@ execute pathogen#infect()
 
 "use soft tabs for python
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype html setlocal expandtab tabstop=2 shiftwidth=2
 filetype plugin indent on
 
 " Color
@@ -38,7 +40,7 @@ map <C-PAGEDOWN> :call ZoomOut()<cr>
 
 " nicer list mode (to find tabs)
 :set listchars=tab:>-,trail:#,extends:~,precedes:<
-":set list (default turned off for now)
+:set list
 
 :set mousemodel=popup
 
@@ -69,3 +71,11 @@ map <C-T> :TagbarToggle<cr>
 "nerd tree arrows don't display correctly in gvim, disable them
 let g:NERDTreeDirArrows=0
 let NERDTreeIgnore = ['\.pyc$', '\.o']
+
+let g:go_fmt_command = "gofmt"
+
+command! GitHubLink call GitHubLink()
+
+function! GitHubLink()
+    execute "!" . "githublink" . " " . bufname("%") . " " . ( line(".") ) ." &"
+endfunction
