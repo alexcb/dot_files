@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+sudo apt autoremove
+sudo apt update
+sudo apt upgrade
+sudo sync

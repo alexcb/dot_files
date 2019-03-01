@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+CURRENTBRANCH=`git rev-parse --abbrev-ref HEAD`
+if [ $CURRENTBRANCH == "master" ] || [ $CURRENTBRANCH == "production" ]; then
+	echo "Will not run on current branch: $CURRENTBRANCH"
+	exit 1
+fi
+
+git commit --amend --date="$(date -R)" --no-edit
+git push --force

@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+CURRENTBRANCH=`git rev-parse --abbrev-ref HEAD`
+if [ $CURRENTBRANCH == "master" ] || [ $CURRENTBRANCH == "production" ] || [ $CURRENTBRANCH == "staging" ]; then
+	echo "Will not run on current branch: $CURRENTBRANCH"
+	exit 1
+fi
+
+if [ $# -eq 0 ]; then
+	git commit -a -m 'fixup'
+else
+	git add $@
+	git commit -m 'fixup'
+fi
+
+git log --oneline | head -n 1 | grep fixup
+if [ $? -ne 0 ]; then
+	echo "nothing to commit; exiting script"
+	exit 1
+fi
+
+git reset --soft HEAD^
+git commit --amend --no-edit
+git push --force

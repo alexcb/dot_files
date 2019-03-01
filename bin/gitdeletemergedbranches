@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+git remote prune origin
+git branch --merged master | grep -v master | xargs -r -n 1 git branch -D

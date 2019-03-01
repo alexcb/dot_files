@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+import subprocess
+import sys
+import time
+
+
+def die(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+    sys.exit(1)
+
+
+current_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).decode('utf8').strip()
+origin = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url']).decode('utf8').strip()
+
+if current_branch in ('master', 'production', 'staging'):
+    die('Will not run on current branch: %s' % current_branch)
+
+if origin.startswith('http'):
+    url = '%s/compare/%s?expand=1' % (origin, current_branch)
+elif origin.startswith('git'):
+    org_repo = origin.split(':')[1][:-4]
+    githubhost = origin.split('@')[1].split(':')[0]
+    url='https://%s/%s/compare/%s?expand=1' % (githubhost, org_repo, current_branch)
+else:
+    die('unsupported origin: %s' % origin)
+
+subprocess.check_call(['git', 'push', '-u', 'origin', 'HEAD'])
+time.sleep(1)
+subprocess.check_call(['xdg-open', url])

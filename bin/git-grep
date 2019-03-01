@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+git rev-list --all . | xargs git grep "$1"

@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+git config user.name "Alex Couture-Beil"
+git config user.email "alex@mofo.ca"
